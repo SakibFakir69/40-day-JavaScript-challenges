@@ -1,8 +1,7 @@
 
 
 ``
-JavaScript is a scripting langauge and javascript is a single tread langauge . We can implement activity website in javascript . Javascript is most popular in website development.
-Most javascript used langauage is #React.js is libary built on javascript and most popular fullstack frame work in js is Next.js based on React . javascript use v8 engine
+JavaScript is a scripting language and it is single-threaded. It is widely used to build interactive websites. JavaScript is the most popular language in web development. One of the most used JavaScript libraries is React.js, which is used to build user interfaces. The most popular full-stack framework based on React is Next.js. JavaScript runs on the V8 engine, which is developed by Google.
 ``
 
 
