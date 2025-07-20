@@ -1,0 +1,1 @@
+    //  str2.replace(str2[0],"OK");
