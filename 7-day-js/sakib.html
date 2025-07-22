@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #box {
+            width: 100%;
+            display: flex;
+         
+            flex-direction: column;
+         
+       
+               justify-content: center;
+            justify-items: center;
+
+        }
+
+        #form {
+            
+            display: flex;
+            justify-content: center;
+            margin-top: 200px;
+       
+       
+  
+
+        }
+        #show{
+            margin-top: 60px;
+               display: flex;
+            justify-content: center;
+
+        }
+        #input{
+            height: 50px;
+            width: 400px;
+            padding-left: 10px;
+        }
+        #button{
+            height: 50px;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="box">
+
+        <form id="form">
+            <input id="input" type="number" placeholder="Enter your number " />
+            <button id="button" type="submit">Send</button>
+
+        </form>
+        <div id="show">
+
+    
+            <p id="score"></p>
+            <p id="text"></p>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <script src="./sakib.js"></script>
+</body>
+
+</html>
