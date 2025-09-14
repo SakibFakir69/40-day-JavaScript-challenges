@@ -43,8 +43,8 @@ const person = {
 };
 
 
- const {name, company ,  } = person;
- console.log(name, company , company.location.city)
+const { name, company, } = person;
+console.log(name, company, company.location.city)
 
 
 
@@ -58,9 +58,106 @@ const person = {
 // - Store books in an object.
 // - Add functionality to check availability and restock books.
 
+
+class BookInventory {
+
+  static books = [];
+
+  constructor(name, size, stock) {
+    this.name = name;
+    this.size = size;
+    this.stock = stock;
+    const book = { name: this.name, size: this.size, stock: this.stock };
+    BookInventory.books.push(book);
+
+  }
+
+  // find this book 
+
+
+
+  // take book
+  takeBook(name, number) {
+
+    if (!name || !number) {
+      console.log("please full fill info");
+      return;
+    }
+
+    const findBooks = BookInventory.books.find(
+      (item) => item.name.toLowerCase() === name.toLowerCase()
+    );
+
+    const { stock } = findBooks;
+
+    if (stock<=0 || stock==0) {
+      console.log("book not avaiable");
+      return;
+    } else {
+      findBooks.stock -= number;
+    }
+
+
+
+  }
+
+
+  // add book
+
+  addBook(name, stock) {
+
+    if (!name || !stock) {
+
+      console.log("not find full info");
+      return;
+    }
+    const findBooks = BookInventory.books.find(
+      (item) => item.name.toLowerCase() === name.toLowerCase()
+    );
+
+
+    if (findBooks) {
+      findBooks.stock += stock;
+      console.log(findBooks.stock, ' stock ')
+    } else {
+      console.log("failed to add ")
+    }
+
+
+  }
+
+  show() {
+    console.log(BookInventory.books, "show");
+  }
+
+
+}
+
+
+const book = new BookInventory("sakib", 10, 120);
+const book2 = new BookInventory("sakib2", 10, 120);
+
+book.addBook("sakib", 540)
+console.log(book);
+book2.takeBook('sakib2',20)
+console.log(book, "latest")
+book.show()
+
 // ## 6. What is the difference between Object.keys() and Object.entries()? Explain with examples
 
+// object we got key of object , and object.entrise convrt object to array
+
+const info = {
+  name: "sakib fakir",
+  age: 10
+}
+// object key 
+console.log(Object.keys(info)) /// name ,age 
+console.log(Object.entries(info))
+
 // ## 7. How do you check if an object has a certain property?
+
+// hasOwnProperty(object, property)
 
 // ## 8. What will be the output and why?
 
@@ -70,6 +167,9 @@ const person = {
 // newPerson.name = "Doe";
 // console.log(person.name);
 // ```
+// output -> doe because overwrite prevous name  and this is refernce type point same object
+
+
 
 // ## 9. What’s the best way to deeply copy a nested object? Expalin with examples
 
@@ -78,23 +178,24 @@ const person = {
 // ```js
 const users = [
   {
-      'name': 'Alex',
-      'address': '15th Park Avenue',
-      'age': 43
+    'name': 'Alex',
+    'address': '15th Park Avenue',
+    'age': 43
   },
   {
-      'name': 'Bob',
-      'address': 'Canada',
-      'age': 53
+    'name': 'Bob',
+    'address': 'Canada',
+    'age': 53
   },
   {
-      'name': 'Carl',
-      'address': 'Bangalore',
-      'age': 26
+    'name': 'Carl',
+    'address': 'Bangalore',
+    'age': 26
   }
 ];
 
 
-users.forEach((item,key)=>{
-    const {} = item;
+users.forEach((item, key) => {
+  const { name, address, age } = item;
+  console.log(name, address, age)
 })
