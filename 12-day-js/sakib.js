@@ -53,12 +53,55 @@ console.log(name, company, company.location.city)
 // - Store student details in an object (name, age, grades).
 // - Implement a method to calculate the average grade.
 
+
+
+class StudentMangementSystem {
+
+  allStudents=[];
+
+
+  constructor(name, age,grades)
+  {
+    this.name=name;
+    this.age=age;
+    this.grades=grades;
+  }
+
+
+  avgGrade(){
+
+    const mark = Array.isArray(this.grades) && this.grades.reduce((prev, curr)=> prev+curr,0);
+    const ans = (mark/this.grades.length);
+
+    if(ans>80 && ans<=100)
+    {
+      console.log("A+");
+    }else if(ans>70 && ans<=79)
+    {
+      console.log("A")
+    }else if(ans>59  && ans<=69)
+    {
+      console.log("a-")
+    }else{
+      console.log("failed")
+    }
+
+  }
+
+
+
+}
+
+
+const s1 = new StudentMangementSystem("Sakib", 20, [8, 90, 85]);
+
+
+s1.avgGrade()
+
 // ## 5. Book Store Inventory System
 
 // - Store books in an object.
 // - Add functionality to check availability and restock books.
-
-
 class BookInventory {
 
   static books = [];
@@ -143,7 +186,14 @@ book2.takeBook('sakib2',20)
 console.log(book, "latest")
 book.show()
 
+
+// this is inheritence
+
+
+
 // ## 6. What is the difference between Object.keys() and Object.entries()? Explain with examples
+
+
 
 // object we got key of object , and object.entrise convrt object to array
 
@@ -172,6 +222,9 @@ console.log(Object.entries(info))
 
 
 // ## 9. What’s the best way to deeply copy a nested object? Expalin with examples
+
+// we can use json,parse(json.stringfy(obj)) , is copy not gave memory refeercene it create new memory location
+// shoallow copy create reference and point same value and deep copy not point and create new memory location
 
 // ## 10. Loop and print values using Object destructuiring
 
