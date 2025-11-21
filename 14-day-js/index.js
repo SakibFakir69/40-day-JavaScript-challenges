@@ -62,7 +62,7 @@
 
 
 //         console.log(error);
-        
+
 //     }
 
 
@@ -76,60 +76,57 @@
 // - ServerError
 // - EmailError
 
-class UserError extends Error{
+class UserError extends Error {
 
 
-    constructor(msg)
-    {
+    constructor(msg) {
         super(msg); /// access prent class
 
         // create own properties
 
-        this.name="User Error";
-        this.message=  msg|"Please Enter Your Correct Information"
+        this.name = "User Error";
+        this.message = msg | "Please Enter Your Correct Information"
 
 
     }
 }
 
 
-class PaymentError extends Error{
-    constructor(msg,amount)
-    {
+class PaymentError extends Error {
+    constructor(msg, amount) {
         super(msg);
 
-        this.cause= `amount must be positive your enter ${amount}`
+        this.cause = `amount must be positive your enter ${amount}`
 
     }
 }
 
 
-class ServerError extends Error{
+class ServerError extends Error {
 
-    statusCode= 500;
+    statusCode = 500;
 
-    constructor(msg)
-    {
+    constructor(msg) {
         super(msg);
-        this.name="Server error";
+        this.name = "Server error";
         this.timeStap = new Date().toLocaleString();
-        this.statusCode=this.statusCode;
+        this.statusCode = this.statusCode;
 
     }
 }
 
 
-class EmailError extends Error{
+class EmailError extends Error {
 
-    constructor(msg, email){
+    constructor(msg, email) {
 
         super(msg);
 
-        this.email=email
+        this.email = email
 
-        if(!userEmail.includes("@")){
-            this.name="Please Enter your valid email";
-            this.cause='you have missing @ to your email address'
+        if (!userEmail.includes("@")) {
+            this.name = "Please Enter your valid email";
+            this.cause = 'you have missing @ to your email address'
         }
 
     }
@@ -138,55 +135,55 @@ class EmailError extends Error{
 
 
 try {
-     if(300<10)
-    {
-        throw new  PaymentError("payment error",1000)
+    if (300 < 10) {
+        throw new PaymentError("payment error", 1000)
     }
 } catch (error) {
 
     throw new PaymentError(error, 100)
-    
+
 }
 
 
 try {
 
-   
 
-    if(!"sakib".includes("t"))
-    {
+
+    if (!"sakib".includes("t")) {
         throw new UserError("Error failed")
-    }else{
+    } else {
         console.log("right")
     }
-    
+
 } catch (error) {
 
     console.log(error)
 
 
-    
+
 }
 
 
 // ## 4. Simulate an API call function fetchData(url). If the URL does not start with "https", throw an "Invalid URL" error. Handle it using try...catch
 
 
-const fetchData = (url)=>{
+const fetchData = (url) => {
 
-    if(!url) return;
+    if (!url) return;
 
     try {
-        if(url.includes("https")){
-        throw new Error('Invalid URL')
-    }
-        
+        if (url.includes("https")) {
+            throw new Error('Invalid URL')
+        }
+
     } catch (error) {
         console.log(error);
-        
+
     }
 
 }
+
+
 
 
 // ## 5. Implement a custom error type ValidationError using constructor functions to handle form validation errors
@@ -197,6 +194,37 @@ const fetchData = (url)=>{
 // const userInput = { username: "", age: -2 };
 // validateUser(userInput);
 
+class ValidationError2 extends Error {
+
+    constructor(msg) {
+        super(msg);
+        this.name = "Validation error";
+        this.message = msg;
+
+    }
+}
+
+function ValidationError(item) {
+
+    const { username, age } = item;
+
+
+
+
+    if (!username || username.length == 0) {
+
+        throw new ValidationError2("Username cannot be empty")
+
+
+    }
+
+    if (age == 0 || !age || age < 0) {
+        throw new ValidationError2("Age must be a positive number")
+    }
+
+}
+
+
 // // Output:
 // // ValidationError: Username cannot be empty
 // // ValidationError: Age must be a positive number
@@ -206,7 +234,46 @@ const fetchData = (url)=>{
 
 // Please note, you do not have to implement the actual IO operation here. Just use the console.log to simulate them.
 
+
+function readFile(filePath) {
+    try {
+
+        if (!filePath.includes("/")) {
+            throw new Error('File not found')
+
+        }
+        console.log(`reading filepath :${filePath}`);
+
+
+    } catch (error) {
+
+        console.log(error.message)
+
+    } finally {
+        console.log("completed")
+    }
+
+}
+
+
+
 // ## 7. Write a function parseJson(str) that takes a JSON string and tries to parse it using JSON.parse(). If parsing fails, catch the error and return "Invalid JSON"
+
+
+function parseJson(str) {
+
+    try {
+
+        return JSON.parse(str);
+    } catch (error) {
+
+        return "Invalid JSON";
+
+    }
+}
+parseJson({ age: '10' })
+
+
 
 // ## 8. What is the purpose of throw in JavaScript?
 
@@ -214,7 +281,7 @@ const fetchData = (url)=>{
 // - It stops the execution of a program
 // - It creates a new error manually
 // - It prints an error message
-
+// ans ->  - It stops the execution of a program
 
 // ## 9. What does the finally block do in a try...catch statement?
 
@@ -222,5 +289,14 @@ const fetchData = (url)=>{
 // - Runs only if no error occurs
 // - Runs regardless of whether an error occurs or not
 // - Stops the execution of the script
+/// -> ans -> // - Runs regardless of whether an error occurs or not
 
 // ## 10. Create a table exaplaining the usages of try, catch, throw, rethrow, error object
+
+//  try -> we can write code or logic here
+/// catch -> use to catch error whice error got in try block 
+// throw -> thow use to stop exection
+/// rethrow-> catch error and re-thow again
+//// error -> we can get many type error , syntax error , reference error 
+/// get error object -> error  name  , error message ,error stack
+
