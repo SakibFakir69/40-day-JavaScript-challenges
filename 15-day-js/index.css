@@ -1,0 +1,14 @@
+
+
+.text{
+    color: black;
+    font-size: 30px;
+}
+
+#box2{
+    height: 200px;
+    width: 200px;
+    border: 2px solid red;
+    background-color: black;
+}
+
