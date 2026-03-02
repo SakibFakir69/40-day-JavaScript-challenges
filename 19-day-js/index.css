@@ -1,0 +1,10 @@
+
+
+.active{
+    display: block;
+    border: 2px solid red
+}
+.hide{
+  
+    display: none;
+}
