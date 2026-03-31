@@ -1,7 +1,23 @@
 
 console.log("quiz application")
 
-const recipesData = [
+
+
+// ----------------------
+
+
+const body = document.getElementById("body");
+const card = document.getElementById("card");
+
+// filter
+
+
+const input = document.getElementById("input");
+const searchButton = document.getElementById("searchButton");
+const reset = document.getElementById("reset");
+
+
+let recipesData = [
     {
         title: "Spaghetti Carbonara",
         ingredients: ["Spaghetti", "Eggs", "Parmesan Cheese", "Bacon"],
@@ -25,29 +41,48 @@ const recipesData = [
 ];
 
 
-const body = document.getElementById("body");
-const card = document.getElementById("card");
 
 
-// filter
+
+// MAKE RENDER FUNCTION 
+
+const renderData = (data, search) => {
+
+    if(search==="")
+    {
+        return recipesData;
+    }
+    const result = Array.isArray(data) ? data.filter((item) => item.title.toLowerCase() === search.toLowerCase()) : []
+    return result;
+}
 
 
-const input = document.getElementById("input");
-const searchButton = document.getElementById("searchButton");
+let result=renderData(recipesData ,'');
+showUI(result); /// init show
 
-searchButton.addEventListener("click" , (event)=>{
+searchButton.addEventListener("click", (event) => {
+
     event.preventDefault();
-    const searchValue = input.value;
-    console.log(searchValue , ' search value');
-
-
+    const searchValue = input.value.toLowerCase();
+    console.log(searchValue, ' search value');
+    let result=renderData(recipesData,searchValue);
+    showUI(result); 
+    /// after search
+     
+})
+reset.addEventListener("click", ()=>{
+    
+let result=renderData(recipesData ,'');
+showUI(result); /// init show
 })
 
 
 
+function showUI(data=[]){
 
-
-recipesData.forEach((item, key) => {
+    card.innerHTML='';
+    
+    data.forEach((item, key) => {
     const { ingredients, title, instructions } = item;
 
     const copyCard = document.createElement("div")
@@ -62,7 +97,7 @@ recipesData.forEach((item, key) => {
     h3.style.color = "white"
     copyCard.classList.add("recipeCard")
     p.style.marginBottom = "4px"
-    p.style.color="black"
+    p.style.color = "black"
 
     // append
     copyCard.appendChild(h3);
@@ -81,10 +116,7 @@ recipesData.forEach((item, key) => {
             span.style.margin = "3px";
             span.style.marginTop = "-1px";
             span.style.color = "white"
-
-            span.textContent = item + ", ";
-
-
+            span.textContent = item + " ";
             copyCard.appendChild(span);
         })
 
@@ -95,5 +127,18 @@ recipesData.forEach((item, key) => {
     card.appendChild(copyCard);
 
 })
+
+
+}
+
+
+
+
+
+
+
+
+
 console.log(card)
+
 

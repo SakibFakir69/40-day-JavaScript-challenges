@@ -15,6 +15,12 @@
     border-radius: 10px;
 
 }
+#search-box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
 #body{
     width: 100%;
     display: flex;
