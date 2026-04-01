@@ -48,8 +48,7 @@ let recipesData = [
 
 const renderData = (data, search) => {
 
-    if(search==="")
-    {
+    if (search === "") {
         return recipesData;
     }
     const result = Array.isArray(data) ? data.filter((item) => item.title.toLowerCase() === search.toLowerCase()) : []
@@ -57,7 +56,7 @@ const renderData = (data, search) => {
 }
 
 
-let result=renderData(recipesData ,'');
+let result = renderData(recipesData, '');
 showUI(result); /// init show
 
 searchButton.addEventListener("click", (event) => {
@@ -65,69 +64,93 @@ searchButton.addEventListener("click", (event) => {
     event.preventDefault();
     const searchValue = input.value.toLowerCase();
     console.log(searchValue, ' search value');
-    let result=renderData(recipesData,searchValue);
-    showUI(result); 
+    let result = renderData(recipesData, searchValue);
+
+    showUI(result);
     /// after search
-     
+
 })
-reset.addEventListener("click", ()=>{
-    
-let result=renderData(recipesData ,'');
-showUI(result); /// init show
+reset.addEventListener("click", () => {
+
+    let result = renderData(recipesData, '');
+    showUI(result); /// init show
 })
 
 
 
-function showUI(data=[]){
+function showUI(data = []) {
 
-    card.innerHTML='';
-    
-    data.forEach((item, key) => {
-    const { ingredients, title, instructions } = item;
-
-    const copyCard = document.createElement("div")
-
-    const h3 = document.createElement("h3");
-    const p = document.createElement("p");
-
-    // add items on element
-    h3.textContent = title;
-    p.textContent = instructions;
-    // style
-    h3.style.color = "white"
-    copyCard.classList.add("recipeCard")
-    p.style.marginBottom = "4px"
-    p.style.color = "black"
-
-    // append
-    copyCard.appendChild(h3);
-    copyCard.appendChild(p);
+    const divForNotFounded = document.createElement("p")
 
 
-    if (Array.isArray(ingredients)) {
-
-        ingredients.forEach((item, indx) => {
-            let span = document.createElement("span");
-
-            console.log(item);
-            span.style.padding = "2px";
-            span.style.border = "1px solid gray";
-            span.style.borderRadius = "5px";
-            span.style.margin = "3px";
-            span.style.marginTop = "-1px";
-            span.style.color = "white"
-            span.textContent = item + " ";
-            copyCard.appendChild(span);
-        })
-
+    if(data.length==0)
+    {
+        divForNotFounded.textContent="No Data Founded";
 
     }
 
 
-    card.appendChild(copyCard);
 
-})
 
+    card.innerHTML = '';
+
+    data.forEach((item, key) => {
+        const { ingredients, title, instructions } = item;
+
+        const copyCard = document.createElement("div")
+
+        const h3 = document.createElement("h3");
+        const p = document.createElement("p");
+
+        // IF D1ATA EMPTY
+
+
+
+        // add items on element
+        h3.textContent = title;
+        let isOpen = false;
+
+       
+
+
+
+        p.textContent = instructions;
+        // style
+        h3.style.color = "white"
+        copyCard.classList.add("recipeCard")
+        p.style.marginBottom = "4px"
+        p.style.color = "black"
+
+        // append
+        copyCard.appendChild(h3);
+        copyCard.appendChild(p);
+
+
+        if (Array.isArray(ingredients)) {
+
+            ingredients.forEach((item, indx) => {
+                let span = document.createElement("span");
+
+                console.log(item);
+                span.style.padding = "2px";
+                span.style.border = "1px solid gray";
+                span.style.borderRadius = "5px";
+                span.style.margin = "3px";
+                span.style.marginTop = "-1px";
+                span.style.color = "white"
+                span.textContent = item + " ";
+                copyCard.appendChild(span);
+            })
+
+
+        }
+
+
+
+        card.appendChild(copyCard);
+
+    })
+    card.appendChild(divForNotFounded);
 
 }
 
