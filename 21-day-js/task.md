@@ -40,8 +40,11 @@ const recipes = [
 
 Expectations
 A search bar at the top.
+
 As the user types, filter recipes by title (case insensitive).
+
 If no recipe found, show a “No recipes found” message.
+
 
 Clicking on a recipe title should expand/collapse to show ingredients and instructions.
 Add a clear button to reset the search.

@@ -62,12 +62,25 @@ showUI(result); /// init show
 searchButton.addEventListener("click", (event) => {
 
     event.preventDefault();
-    const searchValue = input.value.toLowerCase();
+      const searchValue = input.value.toLowerCase();
+
+    // SAVE LOCALSTROAGE
+    localStorage.setItem("search", searchValue);
+   ;
+  
+  
+    
+   
+
     console.log(searchValue, ' search value');
+
     let result = renderData(recipesData, searchValue);
 
+
     showUI(result);
-    /// after search
+    localStorage.clear();
+    searchValue = " ";
+
 
 })
 reset.addEventListener("click", () => {
@@ -83,9 +96,8 @@ function showUI(data = []) {
     const divForNotFounded = document.createElement("p")
 
 
-    if(data.length==0)
-    {
-        divForNotFounded.textContent="No Data Founded";
+    if (data.length == 0) {
+        divForNotFounded.textContent = "No Data Founded";
 
     }
 
@@ -101,16 +113,31 @@ function showUI(data = []) {
 
         const h3 = document.createElement("h3");
         const p = document.createElement("p");
-
-        // IF D1ATA EMPTY
-
+        h3.style.cursor = "pointer"
 
 
-        // add items on element
+
+
+
+        // HIDE AND SHOW DATA BASED ON CLICK
         h3.textContent = title;
+
         let isOpen = false;
 
-       
+        copyCard.addEventListener("click", () => {
+            console.log(copyCard.children, ' clicked')
+
+            isOpen = !isOpen;
+            Array.from(copyCard.children).forEach((ele) => {
+
+                if (ele === h3) return;
+
+                ele.style.visibility = isOpen ? "visible" : "hidden";
+            })
+        })
+
+
+
 
 
 
