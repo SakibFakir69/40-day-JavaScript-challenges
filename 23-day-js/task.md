@@ -46,14 +46,17 @@ Return a Promise that randomly resolves to "Heads" or "Tails" after 1 second.
 - Chain .then() handlers to double it, then square it.
 - Final output should be 100.
 
+
+<!-- start from here -->
 ## 7. Chain with Random Rejection
 
 - First .then() resolves to "Start".
 - Second .then() randomly throws an error or returns "Continue".
 - Handle rejection gracefully.
 
-## 8. Multiple then() calls on same Promise
 
+
+## 8. Multiple then() calls on same Promise
 - Create a single resolved Promise.
 - Attach two different .then() handlers to it.
 - Explain that both run independently.
@@ -65,7 +68,9 @@ Return a Promise that randomly resolves to "Heads" or "Tails" after 1 second.
   - “Second”
   - “Third”
 
+
 ## 10. Implement fakeDBQuery()
 
 - Create a function that simulates a DB query with a random delay and returns data (like a user object).
 - Chain multiple fake queries.
+

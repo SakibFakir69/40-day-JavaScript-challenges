@@ -80,9 +80,90 @@ const newPromiseResolved = new Promise((resolve, reject)=>{
     console.log(data)
 })
 
+/// 7
+
+const randomRejection = new Promise((resolve, reject)=>{
+    resolve("Start");
+})
+.then((data)=>{
+    console.log(data);
+    const isError = Math.floor(Math.random()*10)>5;
+    if(isError) {
+        throw new Error("Random number failed");
+    }
+    return "Continue";
+})
+.then((data)=>{
+    console.log(data);
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+// 8
+const bothThenPromise = new Promise((resolve, reject)=>{
+    resolve("pass")
+})
+.then((data)=>{
+    console.log(data);
+    console.log("first data");
+})
+.then((data)=>{
+    console.log(data);
+    console.log("2nd data")
+})
 
 
 
+
+
+
+const chainPromise2 = new Promise((resovle, reject)=>{
+    resovle("First");
+})
+.then((data)=>{
+    console.log(data);
+    return data="Second"
+})
+.then((data)=>{
+    console.log(data);
+    return data="Third";
+})
+.then((data)=>{
+    console.log(data);
+})
+
+// 10 
+
+const fakeDB = (id)=>{
+    
+    
+    return new Promise((resolve, reject)=>{
+        const randomeDelay = Math.floor(Math.random()*5000);
+         const str =["asd",'asds']
+            setTimeout(() => {
+
+                const user = {
+                    id:randomeDelay+"dfdf34r3",
+                    name: randomeDelay%2 ? str[0] : str[1],
+
+
+                }
+                resolve(user);
+                
+            }, randomeDelay);
+    })
+
+
+}
+fakeDB(2)
+.then((user)=>{
+    console.log(user);
+})
+fakeDB(29)
+.then((user)=>{
+    console.log(user);
+})
 
 
 
