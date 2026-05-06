@@ -11,13 +11,21 @@ DO NOT USE AI to FIND ANSWERS. If you are stuck, let's discuss it on DISCORD and
 
 
 3. Use fetch() with async/await to load a local JSON file (data.json) and display its contents in the console
+
+
 4. Use the public API https://jsonplaceholder.typicode.com/users/1 to fetch and display the user’s name, email, and address on the page
+
+
 5. Modify the previous task to handle errors (e.g., wrong URL) and display a user-friendly error message in the DOM
+
+
 6. Refactor then/catch to async/await
+
 fetch('/api/data')
   .then(res => res.json())
   .then(data => console.log(data))
   .catch(err => console.error(err));
+
 Project Task
 Let's Build a “Movie Explorer” App
 
